@@ -1,0 +1,9 @@
+.children-card {
+    background-color: blue;
+    width: 30%;
+    height: 70vh;
+    margin-top: 10vh;
+    margin-left: 20px;
+    border: 0px solid #000000;
+    border-radius: 20px 20px 20px 20px;
+}
