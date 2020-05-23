@@ -1,9 +1,27 @@
 .children-card {
-    background-color: blue;
-    width: 30%;
+    background-color: #f5f5f5;
+    width: 25%;
     height: 70vh;
-    margin-top: 10vh;
+    margin-top: 5vh;
     margin-left: 20px;
-    border: 0px solid #000000;
+    
     border-radius: 20px 20px 20px 20px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #dddddd;
+}
+
+.path-container {
+    border-bottom-style: inset;
+    border-bottom-width: 1px;
+    border-bottom-color: #dddddd;
+}
+
+.child-row {
+    height: 35px;
+    margin: 0px;
+}
+
+.child-row:hover {
+    background-color: white;
 }
