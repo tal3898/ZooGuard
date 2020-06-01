@@ -12,10 +12,14 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
-    
+
     this.state = {
       currPath: '/in',
       currChildren: ['a', 'b'],
+      currData: {
+        nodeData: 'f2',
+        creationTime: 'd2'
+      },
       updateContext: (newState) => {
         this.setState(newState)
       }
@@ -31,7 +35,7 @@ class App extends React.Component {
 
           <ChildrenList style={{ float: 'left' }} />
 
-          <NodeData />
+          <NodeData nodeData={this.state.currData.nodeData} creationTime={this.state.currData.creationTime} numberOfChildren={this.state.currChildren.length} />
         </div>
       </ZooGuardProvider>
     );

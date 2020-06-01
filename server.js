@@ -8,7 +8,10 @@ app.post('/nodeData', async (req, res) => {
 
 	res.json({
         children: ['r','t','y'],
-        data: {}
+        data: {
+            nodeData: 'blablabla',
+            creationTime: '2012'
+        }
     });
 
 });

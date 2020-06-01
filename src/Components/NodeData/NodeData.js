@@ -2,16 +2,16 @@ import React from 'react';
 import './NodeData.css';
 
 
-function NodeData() {
+function NodeData(props) {
 
     var nodeData = '{...}';
     var creationTime = '2020-07-03T00:00:00Z'
     var numberOfChildren = 13;
     return (
         <div >
-            <p>Node data: {nodeData}</p>
-            <p>Node creation time: {creationTime}</p>
-            <p>Number of children: {numberOfChildren}</p>
+            <p>Node data: {props.nodeData}</p>
+            <p>Node creation time: {props.creationTime}</p>
+            <p>Number of children: {props.numberOfChildren}</p>
         </div>
     );
 }
