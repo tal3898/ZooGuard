@@ -4,9 +4,12 @@ const app = express();
 
 const port = 5000;
 
-app.post('/children', async (req, res) => {
+app.post('/nodeData', async (req, res) => {
 
-	res.json({message: "good"});
+	res.json({
+        children: ['r','t','y'],
+        data: {}
+    });
 
 });
 
