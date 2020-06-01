@@ -44,7 +44,7 @@ function ChildrenList() {
                 <div className="children-card">
                     <div className="path-container" style={{ paddingLeft: 10 }}>
                         <i id="goBackBtn" onClick={() => goBack(context)} style={{ float: 'left', marginRight: 10 }} className="back-button fas fa-undo-alt"></i>
-                        <p> {context.currPath} </p>
+                        <p> {context.currPath != "" ? context.currPath : '/'} </p>
                     </div>
 
                     {context.currChildren.map(child => getChildRow(child, context))
