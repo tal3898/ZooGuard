@@ -5,7 +5,7 @@ import NavBar from './Components/NavBar/NavBar'
 import ChildrenList from './Components/ChildrenList/ChildrenList'
 import NodeData from './Components/NodeData/NodeData'
 import { ZooGuardProvider } from './Components/ZooGuardContext';
-
+import { goToPath } from './Components/utility'
 
 class App extends React.Component {
 
@@ -25,6 +25,11 @@ class App extends React.Component {
       }
 
     };
+    
+  }
+
+  componentDidMount() {
+    goToPath('', this.state);
   }
 
   render() {
@@ -35,11 +40,11 @@ class App extends React.Component {
 
           <ChildrenList style={{ float: 'left' }} />
 
-          <NodeData nodeData={this.state.currData.nodeData} 
-            creationTime={this.state.currData.creationTime} 
+          <NodeData nodeData={this.state.currData.nodeData}
+            creationTime={this.state.currData.creationTime}
             modificationTime={this.state.currData.modificationTime}
-            numberOfChildren={this.state.currChildren.length} 
-            />
+            numberOfChildren={this.state.currChildren.length}
+          />
         </div>
       </ZooGuardProvider>
     );

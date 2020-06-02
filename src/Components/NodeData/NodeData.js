@@ -4,9 +4,6 @@ import './NodeData.css';
 
 function NodeData(props) {
 
-    var nodeData = '{...}';
-    var creationTime = '2020-07-03T00:00:00Z'
-    var numberOfChildren = 13;
     return (
         <div >
             <p>data: {props.nodeData}</p>
