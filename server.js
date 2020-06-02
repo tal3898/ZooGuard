@@ -27,11 +27,13 @@ app.post('/nodeData', async (req, res) => {
                 zClient.getData(path, function(error2, data, stat2) {
 
                     if (!error2) {
+                        var ctime = stat2.ctime.readBigInt64BE();
+                        var a = new Date(Number(ctime));
                         res.json({
                             children: children,
                             data: {
                                 nodeData: data.toString('utf8'),
-                                creationTime: '2012'
+                                creationTime: new Date(Number(ctime)).toString()
                             }
                         });
                     }
