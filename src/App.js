@@ -6,7 +6,6 @@ import ChildrenList from './Components/ChildrenList/ChildrenList'
 import NodeData from './Components/NodeData/NodeData'
 import { ZooGuardProvider } from './Components/ZooGuardContext';
 import { goToPath } from './Components/utility'
-import { Row, Col } from 'react-bootstrap'
 
 class App extends React.Component {
 
