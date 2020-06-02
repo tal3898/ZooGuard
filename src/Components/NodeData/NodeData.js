@@ -9,8 +9,9 @@ function NodeData(props) {
     var numberOfChildren = 13;
     return (
         <div >
-            <p>Node data: {props.nodeData}</p>
-            <p>Node creation time: {props.creationTime}</p>
+            <p>data: {props.nodeData}</p>
+            <p>creation time (ctime): {props.creationTime}</p>
+            <p>modification time (mtime): {props.modificationTime}</p>
             <p>Number of children: {props.numberOfChildren}</p>
         </div>
     );

@@ -35,7 +35,11 @@ class App extends React.Component {
 
           <ChildrenList style={{ float: 'left' }} />
 
-          <NodeData nodeData={this.state.currData.nodeData} creationTime={this.state.currData.creationTime} numberOfChildren={this.state.currChildren.length} />
+          <NodeData nodeData={this.state.currData.nodeData} 
+            creationTime={this.state.currData.creationTime} 
+            modificationTime={this.state.currData.modificationTime}
+            numberOfChildren={this.state.currChildren.length} 
+            />
         </div>
       </ZooGuardProvider>
     );
