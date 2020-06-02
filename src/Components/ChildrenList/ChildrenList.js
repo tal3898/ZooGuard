@@ -5,11 +5,16 @@ import { ZooGuardConsumer } from '../ZooGuardContext'
 function ChildrenList() {
 
     const goToPath = (path, context) => {
+        var requestingPath = path;
+        if (requestingPath == '') {
+            requestingPath = '/';
+        }
+
         var requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                path: path
+                path: requestingPath
             })
         }
 
@@ -37,6 +42,8 @@ function ChildrenList() {
         var prevPath = context.currPath.substring(0, context.currPath.lastIndexOf('/'));
         goToPath(prevPath, context);
     }
+
+    
 
     return (
         <ZooGuardConsumer>

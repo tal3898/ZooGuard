@@ -14,8 +14,8 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      currPath: '/in',
-      currChildren: ['a', 'b'],
+      currPath: '',
+      currChildren: ['tal', 'b'],
       currData: {
         nodeData: 'f2',
         creationTime: 'd2'
