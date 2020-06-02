@@ -28,12 +28,13 @@ app.post('/nodeData', async (req, res) => {
 
                     if (!error2) {
                         var ctime = stat2.ctime.readBigInt64BE();
-                        var a = new Date(Number(ctime));
+                        var mtime = stat2.mtime.readBigInt64BE();
                         res.json({
                             children: children,
                             data: {
                                 nodeData: data.toString('utf8'),
-                                creationTime: new Date(Number(ctime)).toString()
+                                creationTime: new Date(Number(ctime)).toString(),
+                                modificationTime: new Date(Number(mtime)).toString()
                             }
                         });
                     }
