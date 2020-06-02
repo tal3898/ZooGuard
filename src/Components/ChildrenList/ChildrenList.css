@@ -22,6 +22,17 @@
     margin: 0px;
 }
 
+.back-button {
+    color: #616161;
+    
+}
+
+.back-button:hover {
+    color: #212121;
+    cursor: pointer;
+}
+
 .child-row:hover {
     background-color: white;
+    cursor: pointer;
 }

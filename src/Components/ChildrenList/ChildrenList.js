@@ -50,7 +50,7 @@ function ChildrenList() {
             {(context) =>
                 <div className="children-card">
                     <div className="path-container" style={{ paddingLeft: 10 }}>
-                        <i id="goBackBtn" onClick={() => goBack(context)} style={{ float: 'left', marginRight: 10 }} className="back-button fas fa-undo-alt"></i>
+                        <i className="back-button fas fa-undo-alt" onClick={() => goBack(context)} style={{ float: 'left', marginRight: 10, marginTop: 5}}></i>
                         <p> {context.currPath != "" ? context.currPath : '/'} </p>
                     </div>
 
