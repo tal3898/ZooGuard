@@ -5,7 +5,7 @@ import './NodeData.css';
 function NodeData(props) {
 
     return (
-        <div >
+        <div style={{}} className="data-container">
             <p>data: {props.nodeData}</p>
             <p>creation time (ctime): {props.creationTime}</p>
             <p>modification time (mtime): {props.modificationTime}</p>
