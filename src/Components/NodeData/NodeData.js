@@ -1,14 +1,18 @@
 import React from 'react';
 import './NodeData.css';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 import { ZooGuardConsumer } from '../ZooGuardContext'
-import { goBack } from '../utility'
+import { goBack, goToPath } from '../utility'
 
 import Popup from "reactjs-popup";
 
 
 function NodeData(props) {
     const [isDeletePopupOpen, setIsDeletePopupOpen] = React.useState(false);
+    const [isAddPopupOpen, setIsAddPopupOpen] = React.useState(false);
+    const [newNodeName, setNewNodeName] = React.useState('');
+
 
     const deleteNode = (context) => {
         var nodeToDelete = context.currPath;
@@ -34,6 +38,28 @@ function NodeData(props) {
             });;
     }
 
+    const addNode = (context) => {
+        var newNodePath = context.currPath + '/' + newNodeName;
+
+        var requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                path: newNodePath
+            })
+        }
+
+        setIsAddPopupOpen(false);
+
+        fetch('/node', requestOptions)
+            .then(response => response.json())
+            .then(responseData => {
+                console.log('works');
+                goToPath(context.currPath);
+            }).catch(error => {
+                console.error("NG error: ", error)
+            });;    }
+
     return (
         <ZooGuardConsumer>
             {(context) =>
@@ -54,8 +80,27 @@ function NodeData(props) {
                         </center>
                     </Popup>
 
+
+                    {/** Add node popup */}
+                    <Popup
+                        open={isAddPopupOpen}
+                        onClose={() => setIsAddPopupOpen(false)}
+                        modal
+                        active
+                        closeOnDocumentClick
+                    >
+                        <center style={{ padding: 10 }}>
+                            <p>Enter node name</p>
+                            <TextField value={newNodeName} onChange={(event)=> setNewNodeName(event.target.value)} id="standard-basic" label="node name" />
+
+                            <Button  onClick={() => addNode(context)} variant="contained" color="primary">
+                                Add
+                            </Button>
+                        </center>
+                    </Popup>
+
                     <div style={{}} className="data-container">
-                        <Button style={{ position: 'absolute', right: 20 }} variant="contained" color="primary">
+                        <Button style={{ position: 'absolute', right: 20 }} onClick={() => setIsAddPopupOpen(true)} variant="contained" color="primary">
                             Add
                         </Button>
                         <Button style={{ position: 'absolute', right: 70 }} onClick={() => setIsDeletePopupOpen(true)} variant="contained" color="secondary">
