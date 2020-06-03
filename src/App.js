@@ -6,6 +6,7 @@ import ChildrenList from './Components/ChildrenList/ChildrenList'
 import NodeData from './Components/NodeData/NodeData'
 import { ZooGuardProvider } from './Components/ZooGuardContext';
 import { goToPath } from './Components/utility'
+import Grid from '@material-ui/core/Grid';
 
 class App extends React.Component {
 
@@ -38,18 +39,21 @@ class App extends React.Component {
         <div onClick={() => this.state.updateContext(this.state)} className="App">
           <NavBar />
 
-          <div style={{ float: 'left', width: '22%', marginRight: 100 }}>
-            <ChildrenList />
-          </div>
+          <Grid container spacing={5}>
 
-          <div style={{marginTop:'5vh', float:'left'}}>
-            <NodeData
-              nodeData={this.state.currData.nodeData}
-              creationTime={this.state.currData.creationTime}
-              modificationTime={this.state.currData.modificationTime}
-              numberOfChildren={this.state.currChildren.length}
-            />
-          </div>
+            <Grid item xs={3} >
+              <ChildrenList />
+            </Grid>
+
+            <Grid item xs={6}>
+              <NodeData
+                nodeData={this.state.currData.nodeData}
+                creationTime={this.state.currData.creationTime}
+                modificationTime={this.state.currData.modificationTime}
+                numberOfChildren={this.state.currChildren.length}
+              />
+            </Grid>
+          </Grid>
         </div>
       </ZooGuardProvider>
     );
