@@ -23,3 +23,8 @@ export const goToPath = (path, context) => {
             console.error("NG error: ", error)
         });;
 };
+
+export const goBack = (context) => {
+    var prevPath = context.currPath.substring(0, context.currPath.lastIndexOf('/'));
+    goToPath(prevPath, context);
+}
