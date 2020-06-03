@@ -67,4 +67,18 @@ app.post('/node', async (req, res) => {
     },)
 });
 
+app.delete('/node', async (req, res) => {
+    var newNodePath = req.body.path;
+
+    zClient.remove(newNodePath, 
+        -1,
+        function (error) {
+        if (!error) {
+            res.json({
+                message: "created node successfully"
+            });
+        }
+    },)
+});
+
 app.listen(port, () => console.log('server started on port ' + port));
