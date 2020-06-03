@@ -49,13 +49,14 @@ function NodeData(props) {
             })
         }
 
+        setNewNodeName('');
         setIsAddPopupOpen(false);
 
         fetch('/node', requestOptions)
             .then(response => response.json())
             .then(responseData => {
                 console.log('works');
-                goToPath(context.currPath);
+                goToPath(context.currPath, context);
             }).catch(error => {
                 console.error("NG error: ", error)
             });;    }

@@ -11,20 +11,20 @@ const app = express();
 
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-	extended: true
+    extended: true
 }));
 
-const port = 5000;  
+const port = 5000;
 
 app.post('/nodeData', async (req, res) => {
 
     try {
         var path = req.body.path;
         console.log('requested path ' + path);
-    
-        zClient.getChildren(path, function(error, children, stat) {
+
+        zClient.getChildren(path, function (error, children, stat) {
             if (!error) {
-                zClient.getData(path, function(error2, data, stat2) {
+                zClient.getData(path, function (error2, data, stat2) {
 
                     if (!error2) {
                         var ctime = stat2.ctime.readBigInt64BE();
@@ -39,16 +39,32 @@ app.post('/nodeData', async (req, res) => {
                         });
                     }
                 })
-                
+
             }
         })
-    
 
-    } catch(e) {
+
+    } catch (e) {
         console.log('ee ' + e);
     }
-    
 
+
+});
+
+
+app.post('/node', async (req, res) => {
+    var newNodePath = req.body.path;
+
+    zClient.create(newNodePath, 
+        Buffer.from('data'),
+        zookeeper.CreateMode.PERSISTENT,
+        function (error, path) {
+        if (!error) {
+            res.json({
+                message: "created node successfully"
+            });
+        }
+    },)
 });
 
 app.listen(port, () => console.log('server started on port ' + port));
