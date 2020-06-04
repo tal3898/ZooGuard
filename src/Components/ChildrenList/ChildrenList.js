@@ -49,9 +49,9 @@ function ChildrenList() {
         <ZooGuardConsumer>
             {(context) =>
                 <div className="children-card">
-                    <div className="path-container" style={{ paddingLeft: 10 }}>
+                    <div className="path-container" style={{ paddingLeft: 10, paddingTop:10, paddingBottom:12 }}>
                         <i className="back-button fas fa-undo-alt" onClick={() => goBack(context)} style={{ float: 'left', marginRight: 10, marginTop: 5}}></i>
-                        <p> {context.currPath != "" ? context.currPath : '/'} </p>
+                        <span> {context.currPath != "" ? context.currPath : '/'} </span>
                     </div>
 
                     {context.currChildren.map(child => getChildRow(child, context))
