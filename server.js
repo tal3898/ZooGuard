@@ -2,8 +2,10 @@ const express = require('express');
 var bodyParser = require('body-parser')
 var zookeeper = require('node-zookeeper-client');
 //const zookeeperSync = require('node-zookeeper-client-async');
-
-var zClient = zookeeper.createClient('localhost:2181');
+const dotenv = require('dotenv');
+dotenv.config();
+const zookeeperUrl = process.env.ZOOKEEPER_URL;
+var zClient = zookeeper.createClient(zookeeperUrl);
 zClient.connect();
 
 
@@ -99,7 +101,7 @@ app.delete('/node', async (req, res) => {
 const reconnectZookeeper = function() {
     console.log('Client state is changed to disconnected.');
     zClient.close();
-    zClient = zookeeper.createClient('localhost:2181');
+    zClient = zookeeper.createClient(zookeeperUrl);
     zClient.connect();
 }
 
