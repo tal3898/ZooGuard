@@ -4,6 +4,8 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { ZooGuardConsumer } from '../ZooGuardContext'
 import { goBack, goToPath } from '../utility'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Popup from "reactjs-popup";
 
@@ -17,7 +19,7 @@ function NodeData(props) {
     const deleteNode = (context) => {
         var nodeToDelete = context.currPath;
         console.log('ffff ' + nodeToDelete)
-        
+
         var requestOptions = {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
@@ -39,27 +41,40 @@ function NodeData(props) {
     }
 
     const addNode = (context) => {
-        var newNodePath = context.currPath + '/' + newNodeName;
+        const toastProperties = {
+            autoClose: 6000,
+            position: toast.POSITION.BOTTOM_RIGHT,
+            pauseOnFocusLoss: false
+        };
 
-        var requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                path: newNodePath
-            })
+        if (newNodeName == '' || newNodeName.includes('/')) {
+            toast.error("Node name cannot be emtpy, or containes \"/\" ", toastProperties);
+        } else {
+            var newNodePath = context.currPath + '/' + newNodeName;
+
+            var requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    path: newNodePath,
+                    newNodeName: newNodeName
+                })
+            }
+
+            setNewNodeName('');
+            setIsAddPopupOpen(false);
+
+            fetch('/node', requestOptions)
+                .then(response => response.json())
+                .then(responseData => {
+                    console.log('works');
+                    goToPath(context.currPath, context);
+                }).catch(error => {
+                    toast.error("An error occurred while trying to create node", toastProperties);
+                });;
         }
 
-        setNewNodeName('');
-        setIsAddPopupOpen(false);
-
-        fetch('/node', requestOptions)
-            .then(response => response.json())
-            .then(responseData => {
-                console.log('works');
-                goToPath(context.currPath, context);
-            }).catch(error => {
-                console.error("NG error: ", error)
-            });;    }
+    }
 
     return (
         <ZooGuardConsumer>
@@ -75,8 +90,8 @@ function NodeData(props) {
                     >
                         <center style={{ padding: 15 }}>
                             <h1>Are you sure you want to delete node?</h1>
-                            <p style={{marginBottom:50}}>NOTICE: If the node has children, the children will be killed as well. Are you sure you want to kill the children too?</p>
-                            <Button  onClick={() => deleteNode(context)} variant="contained" color="secondary">
+                            <p style={{ marginBottom: 50 }}>NOTICE: If the node has children, the children will be killed as well. Are you sure you want to kill the children too?</p>
+                            <Button onClick={() => deleteNode(context)} variant="contained" color="secondary">
                                 I am 100% sure i want to delete this node and kill all his children
                             </Button>
                         </center>
@@ -93,27 +108,28 @@ function NodeData(props) {
                     >
                         <center style={{ padding: 10 }}>
                             <h1>Enter node name</h1>
-                            <TextField value={newNodeName} onChange={(event)=> setNewNodeName(event.target.value)} id="standard-basic" label="node name" />
+                            <TextField value={newNodeName} onChange={(event) => setNewNodeName(event.target.value)} id="standard-basic" label="node name" />
 
-                            <Button  onClick={() => addNode(context)} variant="contained" color="primary">
+                            <Button onClick={() => addNode(context)} variant="contained" color="primary">
                                 Add
                             </Button>
                         </center>
                     </Popup>
 
                     <div className="data-container">
-                        <Button style={{ marginTop:15 }} onClick={() => setIsAddPopupOpen(true)} variant="contained" color="primary">
+                        <Button style={{ marginTop: 15 }} onClick={() => setIsAddPopupOpen(true)} variant="contained" color="primary">
                             Add
                         </Button>
-                        <Button style={{ marginTop:15, marginLeft:10 }} onClick={() => setIsDeletePopupOpen(true)} variant="contained" color="secondary">
+                        <Button style={{ marginTop: 15, marginLeft: 10 }} onClick={() => setIsDeletePopupOpen(true)} variant="contained" color="secondary">
                             Delete
                         </Button>
                         <p>data: {props.nodeData}</p>
                         <p>Number of children: {props.numberOfChildren}</p>
                         <p>creation time (ctime): {props.creationTime}</p>
                         <p>modification time (mtime): {props.modificationTime}</p>
-                        
+
                     </div>
+                    <ToastContainer />
                 </div>
             }
         </ZooGuardConsumer>

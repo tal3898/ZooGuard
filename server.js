@@ -61,8 +61,13 @@ app.post('/nodeData', async (req, res) => {
 });
 
 
-app.post('/node', async (req, res) => {
+app.post('/node', async (req, res, next) => {
     var newNodePath = req.body.path;
+    var newNodeName = req.body.newNodeName;
+
+    if (newNodeName == '' || newNodeName.includes('/')) {
+        next('Invalid input');
+    }
 
     zClient.create(newNodePath, 
         Buffer.from('data'),
