@@ -40,12 +40,21 @@ app.post('/nodeData', async (req, res) => {
                     }
                 })
 
+            } else {
+                //THERE IS ERROR
+                res.json({
+                    children: 'error'
+                });
             }
         })
 
 
     } catch (e) {
         console.log('ee ' + e);
+        //THERE IS ERROR
+        res.json({
+            children: 'error'
+        });
     }
 
 

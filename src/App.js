@@ -16,10 +16,10 @@ class App extends React.Component {
 
     this.state = {
       currPath: '',
-      currChildren: ['tal', 'b'],
+      currChildren: [],
       currData: {
-        nodeData: 'f2',
-        creationTime: 'd2'
+        nodeData: '',
+        creationTime: ''
       },
       updateContext: (newState) => {
         this.setState(newState)

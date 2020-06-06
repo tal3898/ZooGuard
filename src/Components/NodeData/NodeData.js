@@ -75,9 +75,9 @@ function NodeData(props) {
                     >
                         <center style={{ padding: 15 }}>
                             <h1>Are you sure you want to delete node?</h1>
-                            <p style={{marginBottom:50}}>NOTICE: If the node has children, the children will be deleted as well</p>
+                            <p style={{marginBottom:50}}>NOTICE: If the node has children, the children will be killed as well. Are you sure you want to kill the children too?</p>
                             <Button  onClick={() => deleteNode(context)} variant="contained" color="secondary">
-                                I am 100% sure i want to delete this node.
+                                I am 100% sure i want to delete this node and kill all his children
                             </Button>
                         </center>
                     </Popup>
