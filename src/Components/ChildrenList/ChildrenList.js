@@ -43,19 +43,21 @@ function ChildrenList() {
         goToPath(prevPath, context);
     }
 
-    
+
 
     return (
         <ZooGuardConsumer>
             {(context) =>
                 <div className="children-card">
-                    <div className="path-container" style={{ paddingLeft: 10, paddingTop:10, paddingBottom:12 }}>
-                        <i className="back-button fas fa-undo-alt" onClick={() => goBack(context)} style={{ float: 'left', marginRight: 10, marginTop: 5}}></i>
+                    <div className="path-container" style={{ paddingLeft: 10, paddingTop: 10, paddingBottom: 12 }}>
+                        <i className="back-button fas fa-undo-alt" onClick={() => goBack(context)} style={{ float: 'left', marginRight: 10, marginTop: 5 }}></i>
                         <span> {context.currPath != "" ? context.currPath : '/'} </span>
                     </div>
 
-                    {context.currChildren.map(child => getChildRow(child, context))
-                    }
+                    <div className="children-container">
+                        {context.currChildren.map(child => getChildRow(child, context))
+                        }
+                    </div>
                 </div>
 
             }
