@@ -70,7 +70,7 @@ app.post('/node', async (req, res) => {
 app.delete('/node', async (req, res) => {
     var newNodePath = req.body.path;
 
-    zClient.remove(newNodePath, 
+    zClient.removeRecursive(newNodePath, 
         -1,
         function (error) {
         if (!error) {

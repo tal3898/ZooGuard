@@ -74,9 +74,10 @@ function NodeData(props) {
                         closeOnDocumentClick
                     >
                         <center style={{ padding: 15 }}>
-                            <p>Are you sure you want to delete node?</p>
-                            <Button  onClick={() => deleteNode(context)} variant="contained" color="primary">
-                                בוודאי
+                            <h1>Are you sure you want to delete node?</h1>
+                            <p style={{marginBottom:50}}>NOTICE: If the node has children, the children will be deleted as well</p>
+                            <Button  onClick={() => deleteNode(context)} variant="contained" color="secondary">
+                                I am 100% sure i want to delete this node.
                             </Button>
                         </center>
                     </Popup>
@@ -91,7 +92,7 @@ function NodeData(props) {
                         closeOnDocumentClick
                     >
                         <center style={{ padding: 10 }}>
-                            <p>Enter node name</p>
+                            <h1>Enter node name</h1>
                             <TextField value={newNodeName} onChange={(event)=> setNewNodeName(event.target.value)} id="standard-basic" label="node name" />
 
                             <Button  onClick={() => addNode(context)} variant="contained" color="primary">
