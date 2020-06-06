@@ -100,11 +100,11 @@ function NodeData(props) {
                         </center>
                     </Popup>
 
-                    <div style={{}} className="data-container">
-                        <Button style={{ position: 'absolute', right: 20 }} onClick={() => setIsAddPopupOpen(true)} variant="contained" color="primary">
+                    <div className="data-container">
+                        <Button style={{ marginTop:15 }} onClick={() => setIsAddPopupOpen(true)} variant="contained" color="primary">
                             Add
                         </Button>
-                        <Button style={{ position: 'absolute', right: 70 }} onClick={() => setIsDeletePopupOpen(true)} variant="contained" color="secondary">
+                        <Button style={{ marginTop:15, marginLeft:10 }} onClick={() => setIsDeletePopupOpen(true)} variant="contained" color="secondary">
                             Delete
                         </Button>
                         <p>data: {props.nodeData}</p>
