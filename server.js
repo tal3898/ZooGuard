@@ -81,4 +81,19 @@ app.delete('/node', async (req, res) => {
     },)
 });
 
+// zookeeper connection handling
+const reconnectZookeeper = function() {
+    console.log('Client state is changed to disconnected.');
+    zClient.close();
+    zClient = zookeeper.createClient('localhost:2181');
+    zClient.connect();
+}
+
+zClient.on('disconnected', reconnectZookeeper);
+zClient.on('expired', reconnectZookeeper);
+
+zClient.on('connected', function () {
+    console.log('Client state is changed to connected.');
+});
+
 app.listen(port, () => console.log('server started on port ' + port));
