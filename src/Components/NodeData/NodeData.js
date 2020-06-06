@@ -15,6 +15,12 @@ function NodeData(props) {
     const [isAddPopupOpen, setIsAddPopupOpen] = React.useState(false);
     const [newNodeName, setNewNodeName] = React.useState('');
 
+    const toastProperties = {
+        autoClose: 6000,
+        position: toast.POSITION.BOTTOM_RIGHT,
+        pauseOnFocusLoss: false
+    };
+
 
     const deleteNode = (context) => {
         var nodeToDelete = context.currPath;
@@ -33,6 +39,7 @@ function NodeData(props) {
         fetch('/node', requestOptions)
             .then(response => response.json())
             .then(responseData => {
+                toast.success("Deleted node successfully", toastProperties);
                 console.log('works');
                 goBack(context);
             }).catch(error => {
@@ -41,12 +48,6 @@ function NodeData(props) {
     }
 
     const addNode = (context) => {
-        const toastProperties = {
-            autoClose: 6000,
-            position: toast.POSITION.BOTTOM_RIGHT,
-            pauseOnFocusLoss: false
-        };
-
         if (newNodeName == '' || newNodeName.includes('/')) {
             toast.error("Node name cannot be emtpy, or containes \"/\" ", toastProperties);
         } else {
@@ -67,7 +68,7 @@ function NodeData(props) {
             fetch('/node', requestOptions)
                 .then(response => response.json())
                 .then(responseData => {
-                    console.log('works');
+                    toast.success("Created node successfully", toastProperties);
                     goToPath(context.currPath, context);
                 }).catch(error => {
                     toast.error("An error occurred while trying to create node", toastProperties);
@@ -88,7 +89,7 @@ function NodeData(props) {
                         active
                         closeOnDocumentClick
                     >
-                        <center style={{ padding: 15 }}>
+                        <center style={{ padding: 15, marginBottom:15 }}>
                             <h1>Are you sure you want to delete node?</h1>
                             <p style={{ marginBottom: 50 }}>NOTICE: If the node has children, the children will be killed as well. Are you sure you want to kill the children too?</p>
                             <Button onClick={() => deleteNode(context)} variant="contained" color="secondary">
@@ -106,8 +107,8 @@ function NodeData(props) {
                         active
                         closeOnDocumentClick
                     >
-                        <center style={{ padding: 10 }}>
-                            <h1>Enter node name</h1>
+                        <center style={{ padding: 10,  marginBottom:15  }}>
+                            <h1>Enter new node name</h1>
                             <TextField value={newNodeName} onChange={(event) => setNewNodeName(event.target.value)} id="standard-basic" label="node name" />
 
                             <Button onClick={() => addNode(context)} variant="contained" color="primary">
