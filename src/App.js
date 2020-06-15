@@ -39,7 +39,7 @@ class App extends React.Component {
         <div onClick={() => this.state.updateContext(this.state)} className="App">
           <NavBar />
 
-          <Grid container spacing={5}>
+          <Grid style={{marginTop:35, width:'100%'}} container spacing={5}>
 
             <Grid item xs={3} >
               <ChildrenList />
