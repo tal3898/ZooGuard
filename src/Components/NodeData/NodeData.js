@@ -111,7 +111,7 @@ function NodeData(props) {
                             <h1>Enter new node name</h1>
                             <TextField value={newNodeName} onChange={(event) => setNewNodeName(event.target.value)} id="standard-basic" label="node name" />
 
-                            <Button onClick={() => addNode(context)} variant="contained" color="primary">
+                            <Button style={{marginTop:10}} onClick={() => addNode(context)} variant="contained" color="primary">
                                 Add
                             </Button>
                         </center>
