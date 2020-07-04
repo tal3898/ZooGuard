@@ -7,7 +7,7 @@ with simple UI viewer.
 
 ## Configuration
 
-In the `.env` file, there is a configuration file `ZOOKEEPER_URL`, with the url of the zookeeper. 
+In the `.env` file, there is an env var: `ZOOKEEPER_URL`, with the url of the zookeeper. 
 
 Just change it to your zookeeper url, and start it :)
 
